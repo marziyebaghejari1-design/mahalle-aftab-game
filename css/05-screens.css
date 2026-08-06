@@ -1,0 +1,1162 @@
+/* ============================================================
+   قهرمانان محلهٔ آفتاب
+   فایل ۵ از ۶ — چیدمان هر صفحه
+   ترتیب: معرفی طراح، منو، ساخت شخصیت، نقشهٔ محله، مأموریت،
+          فروشگاه، کارنامه، جشن، دربارهٔ بازی، واکنش‌گرایی
+   ============================================================ */
+
+/* ============================================================
+   ۱. صفحهٔ معرفی طراح (Splash)
+   ============================================================ */
+
+.screen--splash {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: calc(100vh - var(--footer-h) - var(--s-8));
+  min-height: calc(100dvh - var(--footer-h) - var(--s-8));
+  overflow: hidden;
+}
+
+.splash__sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--c-sky-top) 0%, var(--c-sky-bottom) 100%);
+  border-radius: var(--r-xl);
+  opacity: 0.55;
+}
+
+.splash__sun {
+  position: absolute;
+  top: 8%;
+  inset-inline-start: 12%;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--r-pill);
+  background: var(--c-sun);
+  border: var(--line);
+  box-shadow: 0 0 0 14px rgba(255, 201, 60, 0.28);
+  animation: sun-pulse 5s var(--ease-out) infinite;
+}
+
+.splash__cloud {
+  position: absolute;
+  height: 34px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.9);
+  border: var(--line-thin);
+}
+
+.splash__cloud--1 {
+  top: 22%;
+  inset-inline-end: 10%;
+  width: 130px;
+  animation: cloud-drift 16s linear infinite;
+}
+
+.splash__cloud--2 {
+  top: 62%;
+  inset-inline-start: 8%;
+  width: 96px;
+  animation: cloud-drift 22s linear infinite reverse;
+}
+
+.splash__card {
+  position: relative;
+  z-index: var(--z-base);
+  width: min(560px, 100%);
+  padding: var(--s-7) var(--s-5);
+  border: var(--line);
+  border-radius: var(--r-xl);
+  background: var(--c-cream);
+  box-shadow: var(--shadow-hard-lg);
+  animation: card-rise var(--t-slow) var(--ease-pop) both;
+}
+
+.splash__eyebrow {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  color: var(--c-muted);
+}
+
+.splash__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 400;
+  color: var(--c-navy);
+  line-height: var(--lh-tight);
+  margin: var(--s-2) 0;
+}
+
+.splash__role {
+  font-size: var(--fs-md);
+  color: var(--c-ink);
+}
+
+.splash__role--small {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.splash__rule {
+  width: 72px;
+  margin: var(--s-5) auto;
+  border: 0;
+  border-top: var(--line);
+  border-radius: var(--r-pill);
+}
+
+.splash__game {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  color: var(--c-orange-deep);
+  line-height: var(--lh-tight);
+}
+
+.splash__tag {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  margin-top: var(--s-2);
+}
+
+.splash__skip {
+  position: relative;
+  z-index: var(--z-base);
+  margin-top: var(--s-5);
+}
+
+.splash__loader {
+  position: relative;
+  z-index: var(--z-base);
+  width: min(240px, 60%);
+  height: 10px;
+  border: var(--line-thin);
+  border-radius: var(--r-pill);
+  background: var(--c-paper);
+  overflow: hidden;
+}
+
+.splash__loader span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--c-teal);
+  animation: loader-fill 4s linear forwards;
+}
+
+/* ============================================================
+   ۲. منوی اصلی
+   ============================================================ */
+
+.screen--menu {
+  align-items: center;
+  text-align: center;
+  padding-top: var(--s-5);
+}
+
+.menu__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.menu__tree {
+  width: min(260px, 62vw);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+}
+
+.menu__tree:empty {
+  display: none;
+}
+
+.menu__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: 400;
+  line-height: var(--lh-tight);
+  color: var(--c-navy);
+  text-shadow: 3px 3px 0 var(--c-sun);
+}
+
+.menu__welcome {
+  color: var(--c-muted);
+  min-height: 1.9em;
+}
+
+.menu__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  width: min(360px, 100%);
+  margin-top: var(--s-4);
+}
+
+.menu__actions .btn {
+  width: 100%;
+}
+
+/* ============================================================
+   ۳. ساخت شخصیت
+   ============================================================ */
+
+.screen--profile {
+  width: min(560px, 100%);
+  margin-inline: auto;
+}
+
+.screen--profile .btn--big {
+  align-self: stretch;
+  margin-top: var(--s-2);
+}
+
+/* ============================================================
+   ۴. نقشهٔ محله
+   ============================================================ */
+
+.screen--map {
+  gap: var(--s-4);
+}
+
+.map__header {
+  text-align: center;
+}
+
+.map__subtitle {
+  color: var(--c-muted);
+  font-size: var(--fs-sm);
+}
+
+/* درخت هفت‌چراغ */
+.lamp-tree {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-5) var(--s-4);
+  border: var(--line);
+  border-radius: var(--r-xl);
+  background:
+    linear-gradient(180deg, var(--c-sky-top) 0%, var(--c-sky-bottom) 72%, var(--c-ground) 72%, var(--c-ground) 100%);
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+}
+
+.lamp-tree__canvas {
+  width: min(220px, 54vw);
+  aspect-ratio: 4 / 3;
+}
+
+.lamp-tree__canvas:empty {
+  display: none;
+}
+
+.lamp-tree__lamps {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lamp {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  border: var(--line-thin);
+  background: rgba(255, 255, 255, 0.75);
+  font-size: var(--fs-sm);
+  line-height: 1;
+  transition: background-color var(--t-mid) var(--ease-out),
+              box-shadow var(--t-mid) var(--ease-out);
+}
+
+.lamp.is-lit {
+  background: var(--c-sun);
+  box-shadow: 0 0 0 6px rgba(255, 201, 60, 0.35);
+  animation: lamp-on var(--t-slow) var(--ease-pop);
+}
+
+/* کارت ایستگاه‌ها */
+.station-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--s-4);
+}
+
+.station {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+  min-height: 148px;
+  padding: var(--s-4);
+  border: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--c-paper);
+  box-shadow: var(--shadow-hard);
+  text-align: start;
+  transition: transform var(--t-fast) var(--ease-pop),
+              box-shadow var(--t-fast) var(--ease-out);
+}
+
+.station:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.station:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.station__icon {
+  font-size: var(--fs-3xl);
+  line-height: 1;
+}
+
+.station__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--c-navy);
+  line-height: var(--lh-tight);
+}
+
+.station__task {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+  line-height: 1.6;
+}
+
+.station__stars {
+  margin-top: auto;
+  font-size: var(--fs-sm);
+  letter-spacing: 2px;
+}
+
+.station.is-done {
+  background: var(--c-green-soft);
+}
+
+.station.is-locked {
+  opacity: 0.55;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.station.is-next::after {
+  content: "بعدی";
+  position: absolute;
+  top: -12px;
+  inset-inline-end: var(--s-4);
+  padding: 2px var(--s-3);
+  border: var(--line-thin);
+  border-radius: var(--r-pill);
+  background: var(--c-sun);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+/* ============================================================
+   ۵. صفحهٔ مأموریت
+   ============================================================ */
+
+.screen--mission {
+  padding-bottom: var(--s-8);
+}
+
+.mission__progress {
+  padding: var(--s-2) 0;
+}
+
+.mission__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--s-2);
+}
+
+.mission__bar .btn--primary {
+  min-width: 160px;
+}
+
+/* گزینه‌های پاسخ (تعامل «انتخابی») */
+.choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--s-3);
+}
+
+.choice {
+  min-height: var(--tap-min);
+  padding: var(--s-3) var(--s-4);
+  border: var(--line);
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  box-shadow: var(--shadow-hard-sm);
+  transition: transform var(--t-fast) var(--ease-out),
+              background-color var(--t-fast) var(--ease-out);
+}
+
+.choice:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: var(--c-cream);
+}
+
+.choice.is-picked {
+  background: var(--c-sun);
+  box-shadow: var(--shadow-hard);
+}
+
+.choice.is-correct {
+  background: var(--c-green-soft);
+  border-color: var(--c-green);
+}
+
+.choice.is-removed {
+  opacity: 0.3;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+
+/* ناحیهٔ کشیدن و رهاکردن */
+.dropzones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--s-3);
+}
+
+.dropzone {
+  min-height: 92px;
+  padding: var(--s-3);
+  border: 3px dashed var(--c-navy-soft);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--s-2);
+}
+
+.dropzone__label {
+  width: 100%;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-navy);
+}
+
+.dropzone.is-over {
+  border-color: var(--c-teal);
+  background: rgba(46, 196, 182, 0.14);
+}
+
+.token-tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: var(--s-3);
+  border-radius: var(--r-md);
+  background: rgba(45, 62, 80, 0.05);
+}
+
+.token {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  border: var(--line-thin);
+  border-radius: var(--r-pill);
+  background: var(--c-paper);
+  font-weight: 500;
+  box-shadow: var(--shadow-hard-sm);
+  cursor: grab;
+  touch-action: none;
+}
+
+.token.is-dragging {
+  opacity: 0.55;
+  cursor: grabbing;
+}
+
+.token.is-placed {
+  background: var(--c-sun);
+}
+
+/* صفحه‌کلید عددی */
+.numpad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.numpad__display {
+  width: min(240px, 100%);
+  min-height: 62px;
+  display: grid;
+  place-items: center;
+  border: var(--line);
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  box-shadow: var(--shadow-hard-sm);
+  direction: ltr;
+}
+
+.numpad__keys {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-2);
+  width: min(280px, 100%);
+}
+
+.numpad__key {
+  min-height: 54px;
+  border: var(--line-thin);
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.numpad__key:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+/* ============================================================
+   ۶. فروشگاه تزیین
+   ============================================================ */
+
+.screen--shop {
+  gap: var(--s-4);
+}
+
+.shop__preview,
+.shop__aisle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+.shop__purse {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  align-self: flex-start;
+  padding: var(--s-2) var(--s-4);
+  border: var(--line-thin);
+  border-radius: var(--r-pill);
+  background: var(--c-sun);
+  font-weight: 700;
+}
+
+.shop__layout {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.shop__preview-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  color: var(--c-navy);
+  margin-bottom: var(--s-2);
+}
+
+.square-preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border: var(--line);
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(180deg, var(--c-sky-top) 0%, var(--c-sky-bottom) 70%, var(--c-ground) 70%, var(--c-ground) 100%);
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+}
+
+.shop__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: var(--s-3);
+}
+
+.shop-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+  padding: var(--s-3);
+  border: var(--line-thin);
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  text-align: center;
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.shop-item__icon {
+  font-size: var(--fs-2xl);
+  line-height: 1;
+}
+
+.shop-item__name {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.shop-item__price {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+}
+
+.shop-item.is-owned {
+  background: var(--c-green-soft);
+}
+
+.shop-item.is-tooexpensive {
+  opacity: 0.5;
+}
+
+/* ============================================================
+   ۷. کارنامهٔ قهرمان
+   ============================================================ */
+
+.screen--report {
+  gap: var(--s-4);
+}
+
+.report {
+  padding: var(--s-6) var(--s-5);
+  border: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--c-paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.report__head {
+  text-align: center;
+  padding-bottom: var(--s-4);
+  border-bottom: 2px dashed var(--c-line-soft);
+  margin-bottom: var(--s-5);
+}
+
+.report__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 400;
+  color: var(--c-navy);
+}
+
+.report__student {
+  font-weight: 700;
+  margin-top: var(--s-1);
+}
+
+.report__date {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.report__block {
+  margin-bottom: var(--s-5);
+}
+
+.report__h3 {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--c-navy);
+  margin-bottom: var(--s-3);
+}
+
+.report__foot {
+  padding-top: var(--s-4);
+  border-top: 2px dashed var(--c-line-soft);
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+  text-align: center;
+}
+
+.report__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  justify-content: center;
+}
+
+/* ============================================================
+   ۸. جشن پایان
+   ============================================================ */
+
+.screen--celebration {
+  position: relative;
+  align-items: center;
+  text-align: center;
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-base);
+}
+
+.celebration__box {
+  position: relative;
+  z-index: var(--z-topbar);
+  width: min(560px, 100%);
+  padding: var(--s-6) var(--s-5);
+  border: var(--line);
+  border-radius: var(--r-xl);
+  background: var(--c-cream);
+  box-shadow: var(--shadow-hard-lg);
+  animation: card-rise var(--t-slow) var(--ease-pop) both;
+}
+
+.celebration__square {
+  aspect-ratio: 16 / 9;
+  border: var(--line-thin);
+  border-radius: var(--r-md);
+  background:
+    linear-gradient(180deg, #2B3F63 0%, #4A5D8A 62%, var(--c-ground) 62%, var(--c-ground) 100%);
+  overflow: hidden;
+  margin-bottom: var(--s-4);
+}
+
+.celebration__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 400;
+  color: var(--c-navy);
+}
+
+.celebration__text {
+  margin-top: var(--s-2);
+}
+
+.celebration__medal {
+  font-size: var(--fs-4xl);
+  line-height: 1;
+  margin-top: var(--s-4);
+  animation: medal-swing 3.2s var(--ease-out) infinite;
+}
+
+.celebration__badge {
+  font-weight: 700;
+  color: var(--c-orange-deep);
+}
+
+.celebration__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  justify-content: center;
+  margin-top: var(--s-5);
+}
+
+/* ============================================================
+   ۹. دربارهٔ بازی
+   ============================================================ */
+
+.screen--about {
+  gap: var(--s-4);
+}
+
+.about {
+  padding: var(--s-6) var(--s-5);
+  border: var(--line);
+  border-radius: var(--r-lg);
+  background: var(--c-paper);
+  box-shadow: var(--shadow-hard);
+}
+
+.about__head {
+  text-align: center;
+  padding-bottom: var(--s-4);
+  border-bottom: 2px dashed var(--c-line-soft);
+}
+
+.about__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 400;
+  color: var(--c-navy);
+}
+
+.about__game {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  color: var(--c-orange-deep);
+  margin-top: var(--s-1);
+}
+
+.about__tag {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.about__toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: var(--s-4) 0;
+}
+
+.about__toc a {
+  padding: var(--s-1) var(--s-3);
+  border: 1px solid var(--c-line-soft);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--c-navy-soft);
+  background: var(--c-cream);
+}
+
+.about__toc a:hover {
+  background: var(--c-sun);
+  border-color: var(--c-navy);
+}
+
+.about__block {
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--c-line-soft);
+  scroll-margin-top: calc(var(--topbar-h) + var(--s-4));
+}
+
+.about__block:last-child {
+  border-bottom: 0;
+}
+
+.about__h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  color: var(--c-navy);
+  margin-bottom: var(--s-3);
+}
+
+.about__block p + p {
+  margin-top: var(--s-3);
+}
+
+.about__ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding-inline-start: var(--s-5);
+  list-style: disc;
+}
+
+.about__dl {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.about__dl dt {
+  font-weight: 700;
+  color: var(--c-teal-deep);
+}
+
+.about__dl dd {
+  padding-inline-start: var(--s-4);
+  padding-bottom: var(--s-2);
+  border-inline-start: 3px solid var(--c-line-soft);
+  margin-inline-start: var(--s-1);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: var(--line-thin);
+  border-radius: var(--r-md);
+}
+
+.about__table {
+  width: 100%;
+  min-width: 520px;
+  font-size: var(--fs-sm);
+}
+
+.about__table th,
+.about__table td {
+  padding: var(--s-3);
+  text-align: start;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+
+.about__table thead th {
+  background: var(--c-navy);
+  color: var(--c-cream);
+  font-weight: 700;
+}
+
+.about__table tbody tr:nth-child(even) {
+  background: var(--c-cream);
+}
+
+.about__block--designer {
+  padding: var(--s-5);
+  border: var(--line-thin);
+  border-radius: var(--r-md);
+  background: var(--c-amber-soft);
+  margin: var(--s-5) 0;
+}
+
+.about__designer-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  color: var(--c-navy);
+}
+
+.about__designer-note {
+  margin-top: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--c-navy-soft);
+}
+
+.about__note {
+  margin-top: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.code-sample {
+  overflow-x: auto;
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--c-navy);
+  color: #E8F3F1;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.8;
+  direction: ltr;
+  text-align: left;
+}
+
+.code-sample code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  display: block;
+  white-space: pre;
+}
+
+/* ============================================================
+   ۱۰. واکنش‌گرایی
+   ============================================================ */
+
+@media (min-width: 760px) {
+  #main {
+    padding: var(--s-6);
+  }
+
+  .shop__layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .station-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .about__dl {
+    grid-template-columns: 180px 1fr;
+    align-items: baseline;
+  }
+
+  .about__dl dd {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+  }
+}
+
+/* گوشی‌های کوچک */
+@media (max-width: 420px) {
+  .menu__title {
+    font-size: var(--fs-3xl);
+  }
+
+  .topbar__sub {
+    display: none;
+  }
+
+  .stat {
+    padding: var(--s-1) var(--s-2);
+    font-size: var(--fs-xs);
+  }
+
+  .station-grid {
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  }
+
+  .fab__label {
+    display: none;
+  }
+
+  .mission__bar .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* ============================================================
+   ۱۱. نمایش‌های کمکی سؤال (شکل کنار صورت سؤال)
+   ============================================================ */
+
+.viz {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3);
+  border-radius: var(--r-md);
+  background: var(--c-cream);
+  border: 1px dashed var(--c-line-soft);
+}
+
+.viz__row {
+  display: flex;
+  gap: var(--s-1);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.viz__cell {
+  font-size: var(--fs-lg);
+  line-height: 1.2;
+}
+
+/* بسته‌ها و گروه‌ها */
+.viz__group {
+  display: flex;
+  gap: 2px;
+  padding: var(--s-2);
+  border: var(--line-thin);
+  border-radius: var(--r-sm);
+  background: var(--c-paper);
+}
+
+/* قبض و فهرست خرید */
+.viz__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.viz__item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-1) var(--s-2);
+  border-bottom: 1px dotted var(--c-line-soft);
+  font-size: var(--fs-sm);
+}
+
+.viz__bar {
+  height: 12px;
+  border-radius: var(--r-pill);
+  background: var(--c-orange);
+  border: 1px solid var(--c-navy);
+  min-width: 6px;
+}
+
+/* کسر */
+.viz__parts {
+  display: flex;
+  gap: 3px;
+  width: 100%;
+}
+
+.viz__part {
+  flex: 1 1 0;
+  height: 44px;
+  border: var(--line-thin);
+  border-radius: 6px;
+  background: var(--c-paper);
+}
+
+.viz__part.is-filled {
+  background: var(--c-teal);
+}
+
+/* مستطیل محیط و مساحت */
+.viz__rect {
+  position: relative;
+  border: var(--line);
+  border-radius: var(--r-sm);
+  background: repeating-linear-gradient(
+    45deg, rgba(46,196,182,.14) 0 8px, transparent 8px 16px);
+  min-width: 90px;
+  min-height: 60px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.viz__rect[data-mode="perimeter"] {
+  background: none;
+  outline: 3px dashed var(--c-orange);
+  outline-offset: 3px;
+}
+
+.viz__label {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--c-navy-soft);
+}
+
+/* تابلو و مسیر */
+.viz__sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+  padding: var(--s-3) var(--s-5);
+  border: var(--line);
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  font-size: var(--fs-3xl);
+  line-height: 1;
+}
+
+.viz__path {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  font-weight: 700;
+}
+
+.viz__step {
+  padding: var(--s-1) var(--s-3);
+  border: var(--line-thin);
+  border-radius: var(--r-pill);
+  background: var(--c-paper);
+  font-size: var(--fs-sm);
+}
+
+.viz__q {
+  display: grid;
+  place-items: center;
+  min-width: 42px;
+  min-height: 42px;
+  border: 3px dashed var(--c-orange);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--c-orange-deep);
+}

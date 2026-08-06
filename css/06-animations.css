@@ -1,0 +1,124 @@
+/* ============================================================
+   قهرمانان محلهٔ آفتاب
+   فایل ۶ از ۶ — انیمیشن‌ها
+   همهٔ انیمیشن‌ها سبک و کوتاه هستند تا حواس دانش‌آموز پرت نشود.
+   با روشن‌کردن «کم‌کردن حرکت» در تنظیمات، همه غیرفعال می‌شوند.
+   ============================================================ */
+
+/* ---------- ورود صفحه‌ها و کارت‌ها ---------- */
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes toast-in {
+  0%   { opacity: 0; transform: translateY(16px) scale(0.94); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---------- صفحهٔ معرفی ---------- */
+
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 14px rgba(255, 201, 60, 0.28); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 0 22px rgba(255, 201, 60, 0.18); }
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  50%  { transform: translateX(-26px); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes loader-fill {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ---------- بازخورد و امتیاز ---------- */
+
+@keyframes stat-bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.28); }
+  100% { transform: scale(1); }
+}
+
+/* روشن‌شدن چراغ درخت میدان */
+@keyframes lamp-on {
+  0%   { transform: scale(0.6); }
+  55%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+/* تکان نرم برای پاسخ نادرست — بدون رنگ قرمز و بدون حس شکست */
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-5px); }
+  75%      { transform: translateX(5px); }
+}
+
+.is-nudging {
+  animation: nudge var(--t-mid) var(--ease-out);
+}
+
+/* بالا رفتن سکه هنگام پاسخ درست */
+@keyframes coin-fly {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-64px) scale(1.5); }
+}
+
+.coin-fly {
+  position: fixed;
+  z-index: var(--z-toast);
+  pointer-events: none;
+  font-size: var(--fs-2xl);
+  animation: coin-fly 900ms var(--ease-out) forwards;
+}
+
+/* ---------- جشن ---------- */
+
+@keyframes medal-swing {
+  0%, 100% { transform: rotate(-7deg); }
+  50%      { transform: rotate(7deg); }
+}
+
+/* چراغانی میدان جشن */
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+.twinkle {
+  animation: twinkle 1.6s ease-in-out infinite;
+}
+
+/* ---------- کمکی ---------- */
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+
+.float-soft {
+  animation: float-soft 3.4s var(--ease-out) infinite;
+}
